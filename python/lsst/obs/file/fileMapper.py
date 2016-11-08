@@ -2,15 +2,18 @@
 
 import os
 
-from lsst.daf.butlerUtils import CameraMapper
+from lsst.obs.base import CameraMapper
 import lsst.afw.cameraGeom as afwCg
 import lsst.afw.image.utils as afwImageUtils
 import lsst.pex.policy as pexPolicy
 from filecam import FileCam
 
+from .makeFileRawVisitInfo import MakeFileRawVisitInfo
+
 class FileMapper(CameraMapper):
     """Provides abstract-physical mapping for data found in the filesystem"""
     packageName = 'obs_file'
+    MakeRawVisitInfoClass = MakeFileRawVisitInfo
     
     def __init__(self, **kwargs):
         policyFile = pexPolicy.DefaultPolicyFile("obs_file", "FileMapper.paf", "policy")

@@ -19,6 +19,13 @@ exposures: {
         level:         "Ccd"
         tables:        "raw"
     }
+    deepDiff_differenceExp: {
+        template:      "deepDiff/diffexp-%(fileroot)s.fits"
+    }
+    deepDiff_matchedExp: {
+        template:      "deepDiff/matchexp-%(fileroot)s.fits"
+    }
+
 }
 
 datasets: {
@@ -134,5 +141,16 @@ datasets: {
         persistable:   "PropertySet"
         storage:       "BoostStorage"
         tables:        raw
+    }
+    deepDiff_metadata: {
+        template:      "deepDiff/metadata-%(fileroot)s.boost"
+    }
+    # dataset defined in obs_base modified in this mapper as follows:
+    deepDiff_diaSrc: {
+        template:      "deepDiff/diaSrc-%(fileroot)s.fits"
+    }
+    # dataset defined in obs_base modified in this mapper as follows:
+    deepDiff_kernelSrc: {
+        template:      "deepDiff/kernelSrc-%(fileroot)s.fits"
     }
 }

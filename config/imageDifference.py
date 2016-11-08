@@ -1,0 +1,2 @@
+from lsst.ip.diffim import GetCalexpAsTemplateTask
+config.getTemplate.retarget(GetCalexpAsTemplateTask)
