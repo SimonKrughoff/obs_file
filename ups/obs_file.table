@@ -1,7 +1,8 @@
 setupRequired(daf_persistence)
 setupRequired(afw)
-setupRequired(daf_butlerUtils)
+setupRequired(obs_base)
 setupRequired(pipe_tasks)
+setupRequired(meas_extensions_shapeHSM)
 
 envAppend(PYTHONPATH, ${PRODUCT_DIR}/python)
 envAppend(PATH, ${PRODUCT_DIR}/bin)
