@@ -66,8 +66,8 @@ class FileMapper(CameraMapper):
         """How many bits are required for the maximum exposure ID"""
         return 32 # just a guess, but this leaves plenty of space for sources
 
-    def queryMetadata(self, datasetType, key, format, dataId):
-        return tuple()
+#    def queryMetadata(self, *args, **kwargs):
+#        return tuple()
 
     def _makeCamera(self, policy, repositoryDir):
         """Make a camera (instance of lsst.afw.cameraGeom.Camera) describing the camera geometry

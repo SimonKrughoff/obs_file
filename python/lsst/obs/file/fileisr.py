@@ -73,7 +73,7 @@ class FileIsrTask(pipeBase.Task):
         raw_md = sensorRef.get("raw_md", immediate=True)
 
         postIsrExposure.getMaskedImage().getMask()[:] &= \
-            afwImage.MaskU.getPlaneBitMask(["SAT", "INTRP", "BAD", "EDGE"])
+            afwImage.Mask.getPlaneBitMask(["SAT", "INTRP", "BAD", "EDGE"])
         if self.config.addNoise:
             self.addNoise(postIsrExposure)
 

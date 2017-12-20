@@ -4,7 +4,7 @@ defaultLevel: "file"
 
 exposures: {
     raw: {
-        template:      "raw/%(filename)s"
+        template:      "raw/%(filename)s[%(extension)i]"
         python:        "lsst.afw.image.ExposureF"
         persistable:   "ExposureF"
         storage:       "FitsStorage"
@@ -12,7 +12,7 @@ exposures: {
         tables:        "raw"
     }
     calexp: {
-        template:      "calexp/%(fileroot)s.fits"
+        template:      "calexp/%(extname)s/%(fileroot)s.fits"
         python:        "lsst.afw.image.ExposureF"
         persistable:   "ExposureF"
         storage:       "FitsStorage"
@@ -20,7 +20,7 @@ exposures: {
         tables:        "raw"
     }
     icExp: {
-        template:      "icExp/%(fileroot)s/icExp.fits"
+        template:      "icExp/%(extname)s/%(fileroot)s/icExp.fits"
         python:        "lsst.afw.image.ExposureF"
         persistable:   "ExposureF"
         storage:       "FitsStorage"
@@ -28,31 +28,31 @@ exposures: {
         tables:        raw
     }
     deepDiff_differenceExp: {
-        template:      "deepDiff/diffexp-%(fileroot)s.fits"
+        template:      "deepDiff/diffexp-%(extname)s-%(fileroot)s.fits"
     }
     deepDiff_matchedExp: {
-        template:      "deepDiff/matchexp-%(fileroot)s.fits"
+        template:      "deepDiff/matchexp-%(extname)s-%(fileroot)s.fits"
     }
 
 }
 
 datasets: {
     psf: {
-        template:      "psf/%(fileroot)s/psf.boost"
+        template:      "psf/%(extname)s/%(fileroot)s/psf.boost"
         python:        "lsst.afw.detection.Psf"
         persistable:   "Psf"
         storage:       "BoostStorage"
         tables:        "raw"
     }
     apCorr: {
-        template:      "apCorr/%(fileroot)s/apCorr.pickle"
+        template:      "apCorr/%(extname)s/%(fileroot)s/apCorr.pickle"
         python:        "lsst.meas.algorithms.ApertureCorrection"
         persistable:   "ApertureCorrection"
         storage:       "PickleStorage"
         tables:        raw
     }
     src: {
-        template:      "src/%(fileroot)s/src.fits"
+        template:      "src/%(extname)s/%(fileroot)s/src.fits"
         python:        "lsst.afw.table.SourceCatalog"
         persistable:   "SourceCatalog"
         storage:       "FitsCatalogStorage"
@@ -66,21 +66,21 @@ datasets: {
         tables:        "raw"
     }
     calexpBackground: {
-        template:      "bckgd/%(fileroot)s/background.fits"
+        template:      "bckgd/%(extname)s/%(fileroot)s/background.fits"
         python:        "lsst.afw.math.BackgroundList"
         persistable:   "PurePythonClass"
         storage:       "FitsCatalogStorage"
         tables:        raw
     }
     icExpBackground: {
-        template:      "icExp/%(fileroot)s/bkgd.fits"
+        template:      "icExp/%(extname)s/%(fileroot)s/bkgd.fits"
         python:        "lsst.afw.math.BackgroundList"
         persistable:   "PurePythonClass"
         storage:       "FitsCatalogStorage"
         tables:        raw
     }
     icSrc: {
-        template:      "icSrc/%(fileroot)s/icSrc.fits"
+        template:      "icSrc/%(extname)s/%(fileroot)s/icSrc.fits"
         python:        "lsst.afw.table.SourceCatalog"
         persistable:   "SourceCatalog"
         storage:       "FitsCatalogStorage"
@@ -94,20 +94,20 @@ datasets: {
         tables:        "raw"
     }
     icMatch: {
-        template:      "icMatch/%(fileroot)s/icMatch.fits"
+        template:      "icMatch/%(extname)s/%(fileroot)s/icMatch.fits"
         python:        "lsst.afw.table.BaseCatalog"
         persistable:   "BaseCatalog"
         storage:       "FitsCatalogStorage"
         tables:        "raw"
     }
     log: {
-        template:      "logs/%(fileroot)s/run.log"
+        template:      "logs/%(extname)s/%(fileroot)s/run.log"
         python:        "str"
         persistable:   "None"
         storage:       "TextStorage"
     }
     logDir: {
-        template:      "logs/%(fileroot)s"
+        template:      "logs/%(extname)s/%(fileroot)s"
         python:        "str"
         persistable:   "None"
         storage:       "None"
@@ -136,21 +136,24 @@ datasets: {
         tables:        raw
     }
     processCcd_metadata: {
-        template:      "metadata/%(fileroot)s/processCcd_metadata.boost"
+        template:      "metadata/%(extname)s/%(fileroot)s/processCcd_metadata.boost"
         python:        "lsst.daf.base.PropertySet"
         persistable:   "PropertySet"
         storage:       "BoostStorage"
         tables:        raw
     }
     deepDiff_metadata: {
-        template:      "deepDiff/metadata-%(fileroot)s.boost"
+        template:      "deepDiff/metadata-%(extname)s-%(fileroot)s.boost"
+        tables:        raw
     }
     # dataset defined in obs_base modified in this mapper as follows:
     deepDiff_diaSrc: {
-        template:      "deepDiff/diaSrc-%(fileroot)s.fits"
+        template:      "deepDiff/diaSrc-%(extname)s-%(fileroot)s.fits"
+        tables:        raw
     }
     # dataset defined in obs_base modified in this mapper as follows:
     deepDiff_kernelSrc: {
-        template:      "deepDiff/kernelSrc-%(fileroot)s.fits"
+        template:      "deepDiff/kernelSrc-%(extname)s-%(fileroot)s.fits"
+        tables:        raw
     }
 }
