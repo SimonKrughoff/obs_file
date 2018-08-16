@@ -6,7 +6,7 @@ from lsst.obs.base import CameraMapper
 import lsst.afw.cameraGeom as afwCg
 import lsst.afw.image.utils as afwImageUtils
 import lsst.pex.policy as pexPolicy
-from filecam import FileCam
+from .filecam import FileCam
 
 from .makeFileRawVisitInfo import MakeFileRawVisitInfo
 

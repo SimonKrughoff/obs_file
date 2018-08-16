@@ -40,11 +40,11 @@ class FileCam(cameraGeom.Camera):
         plateScale = afwGeom.Angle(1., afwGeom.arcseconds)  # plate scale, in angle on sky/mm
         radialDistortion = 0.  # radial distortion in mm/rad^2, i.e. no distortion
         radialCoeff = numpy.array((0.0, 1.0, 0.0, radialDistortion)) / plateScale.asRadians()
-        focalPlaneToPupil = afwGeom.RadialXYTransform(radialCoeff)
-        pupilToFocalPlane = afwGeom.InvertedXYTransform(focalPlaneToPupil)
-        cameraTransformMap = cameraGeom.CameraTransformMap(cameraGeom.FOCAL_PLANE,
-                                                           {cameraGeom.PUPIL: pupilToFocalPlane})
-        detectorList = self._makeDetectorList(pupilToFocalPlane, plateScale)
+        focalPlaneToFieldAngle = afwGeom.makeRadialTransform(radialCoeff)
+        fieldAngleToFocalPlane = focalPlaneToFieldAngle.getInverse()
+        cameraTransformMap = cameraGeom.TransformMap(cameraGeom.FOCAL_PLANE,
+                                                     {cameraGeom.FIELD_ANGLE: fieldAngleToFocalPlane})
+        detectorList = self._makeDetectorList(fieldAngleToFocalPlane, plateScale)
         cameraGeom.Camera.__init__(self, "file", detectorList, cameraTransformMap)
 
     def _makeDetectorList(self, focalPlaneToPupil, plateScale):
