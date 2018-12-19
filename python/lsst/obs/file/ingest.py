@@ -112,4 +112,4 @@ class FileParseTask(ParseTask):
             else:
                 return ext
         except pexExceptions.Exception:
-            return None
+            return "UNKNOWN"
