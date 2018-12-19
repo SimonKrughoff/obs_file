@@ -82,7 +82,7 @@ class FileParseTask(ParseTask):
 
     def translate_visit(self, md):
          filename = md.get('filename')
-         return int(hashlib.sha1(filename).hexdigest(), 16)%(10**16)
+         return int(hashlib.sha1(filename.encode('utf-8')).hexdigest(), 16)%(10**16)
 
     def getDestination(self, butler, info, filename):
         """Get destination for the file
