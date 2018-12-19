@@ -23,6 +23,7 @@
 import numpy
 
 import lsst.afw.image as afwImage
+import lsst.afw.geom as afwGeom
 import lsst.afw.math as afwMath
 import lsst.pex.config as pexConfig
 import lsst.pipe.base as pipeBase
@@ -82,7 +83,7 @@ class FileIsrTask(pipeBase.Task):
             self.setMask(postIsrExposure)
 
         # I'm not sure why this is necessary since the Exposure constructor should set the wcs
-        wcs = afwImage.makeWcs(raw_md)
+        wcs = afwGeom.makeSkyWcs(raw_md)
         if wcs:
             postIsrExposure.setWcs(wcs)
         else:
